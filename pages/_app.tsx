@@ -59,8 +59,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, [lightsOn, playAudio, stopAudio])
 
+  function click(e: React.MouseEvent) {
+    if (e.target === signRef.current) {
+      setLightsOn(prev => !prev)
+    }
+  }
+
   return (
-    <main className={clsx(inter.variable, 'font-sans')} onClick={() => setLightsOn(!lightsOn)}>
+    <main className={clsx(inter.variable, 'font-sans')} onClick={e => click(e)}>
       <Component {...pageProps} />
       <audio id="audio" ref={audioElementRef} />
     </main>
